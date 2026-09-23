@@ -1,6 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, useScroll } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
+import { usePageScroll as useScroll } from './usePageScroll';
 import { Box3, Vector3, MathUtils } from 'three';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 
