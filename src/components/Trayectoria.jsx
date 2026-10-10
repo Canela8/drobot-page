@@ -7,7 +7,6 @@ import {
   FlaskConical,
   Leaf,
   Film,
-  Map,
   MapPin,
   Factory,
   Cpu,
@@ -21,7 +20,6 @@ const icons = {
   research: FlaskConical,
   environment: Leaf,
   film: Film,
-  mapping: Map,
   territory: MapPin,
   industry: Factory,
   software: Cpu,
@@ -195,7 +193,7 @@ export default function Trayectoria({ onClose }) {
           </button>
 
           <span className="journey-intro-label" aria-hidden="true">
-            01 — 07 / PROYECTOS Y EXPERIENCIA
+            01 — {String(trayectoria.length).padStart(2, '0')} / PROYECTOS Y EXPERIENCIA
           </span>
         </div>
 
@@ -227,9 +225,11 @@ export default function Trayectoria({ onClose }) {
                   </div>
 
                   <h2>{item.title}</h2>
-                  <p className="journey-description">
-                    {item.description}
-                  </p>
+                  {item.description && (
+                    <p className="journey-description">
+                      {item.description}
+                    </p>
+                  )}
 
                   <ul className="journey-details">
                     {item.details.map(detail => (

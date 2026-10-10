@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  Pause,
-  Play,
   Map,
   Video,
-  Radio,
+  Code2,
   GraduationCap,
   Bot,
   Printer,
@@ -17,7 +15,7 @@ import { content } from '../data/content';
 const icons = [
   Map,
   Video,
-  Radio,
+  Code2,
   GraduationCap,
   Bot,
   Printer,
@@ -26,44 +24,11 @@ const icons = [
 
 export default function ServicesCarousel({ reducedMotion = false }) {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [visible, setVisible] = useState(false);
 
-  const root = useRef(null);
   const touchX = useRef(null);
 
   const count = content.services.length;
-  const running = !paused && !reducedMotion && visible && count > 1;
-
-  // Reproduce automáticamente mientras el carrusel está visible.
-  useEffect(() => {
-    const element = root.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Avanza cada cuatro segundos.
-  useEffect(() => {
-    if (!running) return;
-
-    const timer = window.setInterval(() => {
-      if (!document.hidden) {
-        setActive(current => (current + 1) % count);
-      }
-    }, 4000);
-
-    return () => window.clearInterval(timer);
-  }, [running, count]);
+  // El cambio de tarjeta es exclusivamente manual.
 
   function move(step) {
     if (count < 2) return;
@@ -95,7 +60,6 @@ export default function ServicesCarousel({ reducedMotion = false }) {
 
   return (
     <div
-      ref={root}
       className="carousel"
       role="region"
       aria-roledescription="carrusel"
@@ -184,7 +148,7 @@ export default function ServicesCarousel({ reducedMotion = false }) {
             <ArrowRight />
           </button>
 
-          <span aria-live={running ? 'off' : 'polite'}>
+          <span aria-live="polite" aria-atomic="true">
             {count > 0 ? active + 1 : 0} / {count}
           </span>
         </div>
@@ -201,22 +165,6 @@ export default function ServicesCarousel({ reducedMotion = false }) {
             />
           ))}
         </div>
-
-        {!reducedMotion && count > 1 && (
-          <button
-            type="button"
-            className="autoplay"
-            aria-label={
-              paused
-                ? 'Activar reproducción automática'
-                : 'Pausar reproducción automática'
-            }
-            onClick={() => setPaused(current => !current)}
-          >
-            {paused ? <Play size={18} /> : <Pause size={18} />}
-            <span>{paused ? 'Reproducir' : 'Pausar'}</span>
-          </button>
-        )}
       </div>
     </div>
   );

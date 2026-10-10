@@ -1,10 +1,10 @@
-// Contenido provisional. Sustituye los textos y añade imágenes en public/images/.
+// Contenido actualizado según PROGRAMA 1B. Imágenes opcionales en public/images/.
 export const content = {
-  hero: { title: 'Una nueva perspectiva.', subtitle: 'Tecnología con drones para llevar tus ideas más lejos.' },
-  about: { title: 'Tecnología con propósito.', description: 'En Drobot, combinamos tecnología y pasión para ofrecer soluciones con drones que transforman tu negocio.' },
+  hero: { title: 'Una nueva perspectiva:', subtitle: 'Tecnologías emergentes para llevar tus proyectos más lejos' },
+  about: { title: 'Tecnología con propósito:', description: 'En drobot combinamos innovación con creatividad para ofrecer soluciones tecnológicas que transforman tu negocio.' },
   services: [
   {
-    "title": "Soluciones y Mapeo con Drones",
+    "title": "Soluciones con drones",
     "description": "Inspecciones aéreas precisas, mapeo 3D detallado y monitoreo en tiempo real.",
     "image": null,
     "alt": ""
@@ -16,8 +16,8 @@ export const content = {
     "alt": ""
   },
   {
-    "title": "Cobertura de Eventos y Livestreaming",
-    "description": "Transmisiones en vivo, tomas dinámicas y DJ Sets.",
+    "title": "Desarrollo de software a la medida",
+    "description": "websites, aplicaciones de gestión empresarial y softwares personalizados para tu negocio",
     "image": null,
     "alt": ""
   },
